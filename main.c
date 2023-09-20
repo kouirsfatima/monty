@@ -37,7 +37,6 @@ int main(int argc, char *argv[])
             j++; 
         }
     }
-
     fclose(file_fb);
     return 0;
 }
