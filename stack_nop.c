@@ -8,6 +8,6 @@
  */
 void add_stack(stack_t **stack, unsigned int h)
 {
-           (void)h;
-            (void)stack;
+  (void)h;
+   (void)stack;
 }
