@@ -1,8 +1,10 @@
 #include "monty.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
+/**
+ * main - prints multiplies two numbers.
+ *@argc: The number of arguments.
+ *@argv: an array of pointers to the arguments.
+ *Return: Always to 0.
+ */
 int main(int argc, char *argv[])
 {
     FILE *file_fb;
