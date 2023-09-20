@@ -2,7 +2,6 @@
 
 /**
  * add_dnodeint - adds a new node at the top of stack
- *
  * @head: pointer to the head of the list
  * @h: line number
  * Return: no return
