@@ -61,9 +61,7 @@ void f_pint(stack_t **stack, unsigned int line_number);
 void f_pop(stack_t **stack, unsigned int line_number);
 void f_nop(stack_t **stack, unsigned int line_number);
 void f_swap(stack_t **stack, unsigned int line_number);
-
-
-void free_args(char **args);
+void f_add(stack_t **stack, unsigned int line_number);
 
 void free_stack(stack_t **stack);
 

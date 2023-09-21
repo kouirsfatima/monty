@@ -18,6 +18,8 @@ int execute(stack_t **stack, char *opcode, unsigned int line_number)
 		{"pop", f_pop},
 		{"nop", f_nop},
 		{"swap", f_swap},
+		{"add", f_add},
+
 		{NULL, NULL},
 	};
 
