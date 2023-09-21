@@ -17,6 +17,7 @@ int execute(stack_t **stack, char *opcode, unsigned int line_number)
 		{"pint", f_pint},
 		{"pop", f_pop},
 		{"nop", f_nop},
+		{"swap", f_swap},
 		{NULL, NULL},
 	};
 
@@ -141,20 +142,3 @@ void f_pop(stack_t **stack, unsigned int line_number)
 		(*stack)->prev = NULL;
 	}
 }
-/**
- *f_nop - adds a new node at the top of stack
- * @stack: pointer to the head of the list
- * @line_number: line number
- * Return: no return
- */
-void f_nop(stack_t **stack, unsigned int line_number)
-{
-	(void)stack;
-	(void)line_number;
-}
-
-
-
-
-
-
