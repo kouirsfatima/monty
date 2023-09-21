@@ -14,13 +14,16 @@ int execute(stack_t **stack, char *opcode, unsigned int line_number)
 	instruction_t insts[] = {
 		{"push", f_push},
 		{"pall", f_pall},
+		{NULL, NULL},
 	};
 
 	for (j = 0; insts[j].opcode != NULL; j++)
 	{
 		if (strcmp(opcode, insts[j].opcode) == 0)
-		{	insts[j].f(stack, line_number);
-			return (0);	}
+		{
+			insts[j].f(stack, line_number);
+			return (0);
+		}
 	}
 	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
 	free_stack(stack);
@@ -40,21 +43,17 @@ void f_push(stack_t **stack, unsigned int line_number)
 	stack_t *new;
 	(void)line_number;
 
-
 	if (stack == NULL)
 	{
-
-		fprintf(stderr, "Error: Stack pointer is NULL\n");
-		free_args(va.args);
-		free_stack(stack);
-		exit(EXIT_FAILURE);
+		return;
 	}
 
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
-		free_args(va.args);
-        free_stack(stack);
+		fprintf(stderr, "Error: malloc failed\n");
+		free(va.args);
+		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
 	new->n = va.number;
@@ -69,7 +68,7 @@ void f_push(stack_t **stack, unsigned int line_number)
 		new->next = *stack;
 		(*stack)->prev = new;
 	}
-	*stack  = new;
+	*stack = new;
 }
 
 /**
@@ -80,13 +79,13 @@ void f_push(stack_t **stack, unsigned int line_number)
  */
 void f_pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *ptr;
+	stack_t *ptr = NULL;
 	(void)line_number;
+
 	ptr = *stack;
 	while (ptr != NULL)
 	{
 		printf("%d\n", ptr->n);
 		ptr = ptr->next;
 	}
-
 }

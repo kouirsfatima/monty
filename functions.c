@@ -6,21 +6,21 @@
  */
 void free_stack(stack_t **stack)
 {
-if (stack)
+	if (stack)
 	{
-	if (*stack)
+		if (*stack)
 		{
-		while ((*stack)->next)
-		{
-			(*stack) = (*stack)->next;
-			free((*stack)->prev);
-		}
-		free((*stack));
-		(*stack) = NULL;
+			while ((*stack)->next)
+			{
+				(*stack) = (*stack)->next;
+				free((*stack)->prev);
+			}
+			free((*stack));
+			(*stack) = NULL;
 		}
 	}
 }
-#include "monty.h"
+
 /**
  * *__atoi - convert a string to an integer
  * @argument: pointer to a instruction
@@ -33,61 +33,30 @@ int __atoi(char *argument, stack_t *stack, int line_count)
 	int i = 0, n = 0, neg = 1;
 
 	if (!argument)
-	{	fprintf(stderr, "L%d: usage: push integer\n", line_count);
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_count);
 		free(va.args);
 		free_stack(&stack);
 		fclose(va.file_fb);
-		exit(EXIT_FAILURE); }
+		exit(EXIT_FAILURE);
+	}
 	if (argument[0] == '-')
-	{i++;
-		neg = -1; }
+	{
+		i++;
+		neg = -1;
+	}
 	for (; argument[i]; i++)
 	{
 		if (argument[i] >= '0' && argument[i] <= '9')
 			n = n * 10 + (argument[i] - '0');
 		else
-		{ fprintf(stderr, "L%d: usage: push integer\n", line_count);
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", line_count);
 			free(va.args);
 			free_stack(&stack);
 			fclose(va.file_fb);
-			exit(EXIT_FAILURE); }
+			exit(EXIT_FAILURE);
+		}
 	}
 	return (n * neg);
 }
-/**
- * free_args - frees a args
- * @stack: head of the linked list.
- * Return: no return.
- */
-void free_args(char **args)
-{
-    int i;
-	while (!args)
-	{
-		return;
-	}
-    for (i = 0; args[i] != NULL; i++)
-    {
-        free(args[i]); 
-    }
-
-    free(args); 
-    args = NULL; 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

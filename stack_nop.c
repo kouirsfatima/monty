@@ -7,6 +7,6 @@
  */
 void add_stack(stack_t **stack, unsigned int line_number)
 {
-	(void)h;
 	(void)stack;
+	(void)line_number;
 }
