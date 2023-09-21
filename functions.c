@@ -62,7 +62,7 @@ int __atoi(char *argument, stack_t *stack, int line_count)
 void free_args(char **args)
 {
     int i;
-	if (args == NULL)
+	while (!args)
 	{
 		return;
 	}
