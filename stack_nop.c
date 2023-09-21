@@ -1,13 +1,12 @@
 #include "monty.h"
-
 /**
- * add_dnodeint - adds a new node at the top of stack
- * @head: pointer to the head of the list
- * @h: line number
+ * add_stack - adds a new node at the top of stack
+ * @stack: pointer to the head of the list
+ * @line_number: line number
  * Return: no return
  */
-void add_stack(stack_t **stack, unsigned int h)
+void add_stack(stack_t **stack, unsigned int line_number)
 {
-  (void)h;
-   (void)stack;
+	(void)h;
+	(void)stack;
 }

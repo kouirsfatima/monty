@@ -1,9 +1,14 @@
 #ifndef MONTY_H
 #define MONTY_H
+#include <stddef.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
+#include <errno.h>
 #include <fcntl.h>
 #include <string.h>
+#define BUF_SIZE 100
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -15,9 +20,9 @@
  */
 typedef struct stack_s
 {
-    int n;
-    struct stack_s *prev;
-    struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -30,8 +35,33 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-    char *opcode;
-    void (*f)(stack_t **head, unsigned int counter);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+/**
+ * struct globals - global vars used in this project
+ * @number: integer number to add to stack
+ * @args: pointer to pointer
+ *@file_fb: file stream
+ */
+typedef struct globals
+{
+int number;
+char **args;
+FILE *file_fb;
+} glob_var;
 
-#endif 
+extern glob_var va;
+
+int __atoi(char *argument, stack_t *stack, int line_count);
+int execute(stack_t **stack, char *opcode, unsigned int line_number);
+void f_push(stack_t **stack, unsigned int line_number);
+void f_pall(stack_t **stack, unsigned int line_number);
+void f_pint(stack_t **stack, unsigned int line_number);
+void f_pop(stack_t **stack, unsigned int line_number);
+
+void free_stack(stack_t **stack);
+
+
+
+#endif /* MONTY_H */
