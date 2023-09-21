@@ -14,9 +14,6 @@ int execute(stack_t **stack, char *opcode, unsigned int line_number)
 	instruction_t insts[] = {
 		{"push", f_push},
 		{"pall", f_pall},
-		  {"pint", f_pint},
-		  {"pop", f_pop},
-		  {NULL, NULL}
 	};
 
 	for (j = 0; insts[j].opcode != NULL; j++)
@@ -37,7 +34,7 @@ int execute(stack_t **stack, char *opcode, unsigned int line_number)
  * @stack: stack head
  * @line_number: line_number
  * Return: no return
-*/
+ */
 void f_push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new;
@@ -72,4 +69,23 @@ void f_push(stack_t **stack, unsigned int line_number)
 		(*stack)->prev = new;
 	}
 	*stack  = new;
+}
+
+/**
+ * f_pall - return the top of a stack.
+ * @stack: pointer to the stack
+ * @line_number: number of the current line in the file
+ *  Return: An integer
+ */
+void f_pall(stack_t **stack, unsigned int line_number)
+{
+	stack_t *ptr;
+	(void)line_number;
+	ptr = *stack;
+	while (ptr != NULL)
+	{
+		printf("%d\n", ptr->n);
+		ptr = ptr->next;
+	}
+
 }
