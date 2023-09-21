@@ -14,6 +14,7 @@ int execute(stack_t **stack, char *opcode, unsigned int line_number)
 	instruction_t insts[] = {
 		{"push", f_push},
 		{"pall", f_pall},
+		{"pint", f_pint},
 		{NULL, NULL},
 	};
 
@@ -89,3 +90,23 @@ void f_pall(stack_t **stack, unsigned int line_number)
 		ptr = ptr->next;
 	}
 }
+/**
+ * f_pall - return the top of a stack.
+ * @stack: pointer to the stack
+ * @line_number: number of the current line
+ *Return: An integer
+ */
+void f_pint(stack_t **stack, unsigned int line_number)
+{
+	stack_t *pint = *stack;
+
+	if (pint == NULL)
+	{
+	fprintf(stderr, "L%d :  can't pint, stack empty\n", line_number);
+	free_stack(stack);
+	free(va.args);
+	exit(EXIT_FAILURE);
+	}
+	fprintf(stdout, "%d\n", pint->n);
+}
+
