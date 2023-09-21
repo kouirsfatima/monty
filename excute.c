@@ -98,7 +98,8 @@ void f_pall(stack_t **stack, unsigned int line_number)
  */
 void f_pint(stack_t **stack, unsigned int line_number)
 {
-	stack_t *pint = *stack;
+	stack_t *pint;
+	pint = *stack;
 
 	if (pint == NULL)
 	{
