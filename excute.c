@@ -15,6 +15,7 @@ int execute(stack_t **stack, char *opcode, unsigned int line_number)
 		{"push", f_push},
 		{"pall", f_pall},
 		{"pint", f_pint},
+		{"pop", f_pop},
 		{NULL, NULL},
 	};
 
@@ -99,15 +100,49 @@ void f_pall(stack_t **stack, unsigned int line_number)
 void f_pint(stack_t **stack, unsigned int line_number)
 {
 	stack_t *pint;
+
 	pint = *stack;
 
 	if (pint == NULL)
 	{
-	fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-	free_stack(stack);
-	free(va.args);
-	exit(EXIT_FAILURE);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		free_stack(stack);
+		free(va.args);
+		exit(EXIT_FAILURE);
 	}
 	fprintf(stdout, "%d\n", pint->n);
 }
+
+/**
+ * f_pop- return the top of a stack.
+ * @stack: pointer to the stack
+ * @line_number: number of the current line
+ *Return: An integer
+ */
+void f_pop(stack_t **stack, unsigned int line_number)
+{
+	if ((*stack) == NULL)
+	{
+		fprintf(stderr, "L%d: can't pop, stack empty\n", line_number);
+		free_stack(stack);
+		free(va.args);
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->next == NULL)
+	{
+		free(*stack);
+		*stack = NULL;
+	}
+	else
+	{
+		*stack = (*stack)->next;
+		free((*stack)->prev);
+		(*stack)->prev = NULL;
+	}
+}
+
+
+
+
+
 
