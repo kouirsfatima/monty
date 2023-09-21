@@ -98,14 +98,15 @@ void f_pall(stack_t **stack, unsigned int line_number)
  */
 void f_pint(stack_t **stack, unsigned int line_number)
 {
+	stack_t *pint = *stack;
 
-	if (*stack == NULL)
+	if (pint == NULL)
 	{
-	fprintf(stderr, "L%d :  can't pint, stack empty\n", line_number);
+	fprintf(stderr,"L%d : can't pint, stack empty\n", line_number);
 	free_stack(stack);
 	free(va.args);
 	exit(EXIT_FAILURE);
 	}
-	fprintf(stdout, "%d\n", (*stack)->n);
+	fprintf(stdout, "%d\n", pint->n);
 }
 
