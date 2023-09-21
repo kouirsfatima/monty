@@ -91,7 +91,7 @@ void f_pall(stack_t **stack, unsigned int line_number)
 	}
 }
 /**
- * f_pall - return the top of a stack.
+ * f_pint- return the top of a stack.
  * @stack: pointer to the stack
  * @line_number: number of the current line
  *Return: An integer
