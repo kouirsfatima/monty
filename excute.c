@@ -45,7 +45,7 @@ void f_push(stack_t **stack, unsigned int line_number)
 	{
 
 		fprintf(stderr, "Error: Stack pointer is NULL\n");
-		free(va.args);
+		free_args(va.args);
 		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
@@ -53,7 +53,8 @@ void f_push(stack_t **stack, unsigned int line_number)
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
-
+		free_args(va.args);
+        free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
 	new->n = va.number;
@@ -74,8 +75,8 @@ void f_push(stack_t **stack, unsigned int line_number)
 /**
  * f_pall - return the top of a stack.
  * @stack: pointer to the stack
- * @line_number: number of the current line in the file
- *  Return: An integer
+ * @line_number: number of the current line
+ *Return: An integer
  */
 void f_pall(stack_t **stack, unsigned int line_number)
 {

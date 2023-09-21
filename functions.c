@@ -54,14 +54,26 @@ int __atoi(char *argument, stack_t *stack, int line_count)
 	}
 	return (n * neg);
 }
+/**
+ * free_args - frees a args
+ * @stack: head of the linked list.
+ * Return: no return.
+ */
+void free_args(char **args)
+{
+    int i;
+	if (args == NULL)
+	{
+		return;
+	}
+    for (i = 0; args[i] != NULL; i++)
+    {
+        free(args[i]); 
+    }
 
-
-
-
-
-
-
-
+    free(args); 
+    args = NULL; 
+}
 
 
 
